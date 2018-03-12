@@ -1,0 +1,40 @@
+{
+  "name": "@xassist/xassist-csv",
+  "version": "0.0.1",
+  "description": "load csv files from remote and create csv files",
+  "keywords": [
+    "xAssist",
+    "csv"
+  ],
+  "bugs": {
+    "email": "gregory.beirens@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "author": "Gregory Beirens <gregory.beirens@gmail.com>",
+  "main": "dist/xAssist-csv.js",
+  "scripts": {
+    "pretest": "rimraf dist  && rollup -c",
+    "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js",
+    "build": "npm run test && git commit -am ",
+    "prepublishOnly": "npm version patch && npm run build  -- \"publish version latest version\"",
+    "postpublish": "git push && git push --tags"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "devDependencies": {
+    "rimraf": "^2.6.2",
+    "rollup": "^0.56.3",
+    "tape": "^4.9.0"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GregBee2/xassist-csv.git"
+  },
+  "homepage": "https://github.com/GregBee2/xassist-csv#readme",
+  "directories": {
+    "test": "test"
+  }
+}
