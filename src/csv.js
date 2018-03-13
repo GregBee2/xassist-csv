@@ -26,7 +26,6 @@ function _setDelimiter(a) {
 		delimiter.push(a.charCodeAt(i));
 	}
 	return delimiter;
-	regexpFormat = _getReFormat();
 }
 function _getReFormat(delimiter) {
 		return new RegExp("[\"" + delimiter.map(String.fromCharCode).join("") + "\n\r]");
@@ -56,35 +55,38 @@ export default function csv(/*delimiters,options*/) {
 		var res,origName,suffix,splitValue,currentValue;
 		indexAfterHeader = 0; //reset index
 		while ((res = csvParser(text, undefined, options, delimiter, indexAfterHeader, 0)), indexAfterHeader = res.endIndex, (res.result.length !== 1 && res.validCSV));
-		//remove null or empty values
-		res.result[0]=array(res.result[0]).replaceNull(function(v,i){return options.headerPrefix+i});
-		//make really unique values
-		for (let i=0,len=res.result[0].length;i<len;i++){
-			//array without current Element
-			currentValue=res.result[0][i];
-			while(res.result[0].indexOf(currentValue)<i&&res.result[0].indexOf(currentValue)>-1){
-				//found value before that equals this
-				splitValue=currentValue.split("_");
-				if(splitValue.length===1){
-					origName=splitValue[0];
-					suffix=-1;
-				}
-				else{
-					suffix=splitValue.pop();
-					if(_isNumeric(suffix)&&Number(suffix)%1===0){
-						suffix=Number(suffix);
-						origName=splitValue.join("_");
+		
+		if(res.validCSV){
+			//remove null or empty values
+			res.result[0]=array(res.result[0]).replaceNull(function(v,i){return options.headerPrefix+i});
+			//make really unique values
+			for (let i=0,len=res.result[0].length;i<len;i++){
+				//array without current Element
+				currentValue=res.result[0][i];
+				while(res.result[0].indexOf(currentValue)<i&&res.result[0].indexOf(currentValue)>-1){
+					//found value before that equals this
+					splitValue=currentValue.split("_");
+					if(splitValue.length===1){
+						origName=splitValue[0];
+						suffix=-1;
 					}
 					else{
-						origName=splitValue.concat(suffix).join("_");
-						suffix=-1;
+						suffix=splitValue.pop();
+						if(_isNumeric(suffix)&&Number(suffix)%1===0){
+							suffix=Number(suffix);
+							origName=splitValue.join("_");
+						}
+						else{
+							origName=splitValue.concat(suffix).join("_");
+							suffix=-1;
+							
+						}
 						
 					}
-					
+					currentValue=origName+"_"+(++suffix);
 				}
-				currentValue=origName+"_"+(++suffix);
+				res.result[0][i]=currentValue;
 			}
-			res.result[0][i]=currentValue;
 		}
 		return res;
 	}
@@ -127,7 +129,6 @@ export default function csv(/*delimiters,options*/) {
 		columns = Array.isArray(columns) ? columns : [];
 		prefix = prefix || "field_";
 		//make sure prefix is unique with respect to existing columns;
-		console.log(columns);
 		prefix = columns.reduce(function (res, v) {
 				while (v.substr(0, res.length) === res) {
 					res = res + "_";
