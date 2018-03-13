@@ -107,4 +107,16 @@ tape("csv({spaceAllowedBetweenDelimiterAndQuote:false}) forbids space between es
 	test.end();
 });
 
+tape("csv({treatConsecutiveDelmitersAsOne:true}) treats 2 consecutive delimiters as one", function(test) {
+	var normalText="start;;normalIndex2;;;;normalIndex6; ;normalIndex8"
+	var simple=csv().toArray(normalText);
+	
+	test.ok( checkCSVArray(simple,1,9),
+		"csv() treats consecutive delimiters as  empty value (default value treatConsecutiveDelmitersAsOne=FALSE)");
+	simple=csv({treatConsecutiveDelmitersAsOne:true}).toArray(normalText);
+	test.deepEqual(simple.result,[["start","normalIndex2","normalIndex6",null,"normalIndex8"]],
+		"csv({treatConsecutiveDelmitersAsOne:true}) treats consecutive delimiters as  1 delimiter, a space between values is really considerd as a (empty) value");
+	test.end();
+});
+
 
