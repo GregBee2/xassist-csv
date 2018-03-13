@@ -17,11 +17,11 @@ var _errorMessages = {
 	incorrectTrailingQuote: 'Unexpected token found after closing Quote for value',
 	incorrectQuote: 'Unexpected Quote found inside value'
 };
-function _setOptions(o) {
-	return object(options).mergeUnique(o);
+function _setOptions(o,newVals) {
+	return object(o).mergeUnique(newVals);
 }
 function _setDelimiter(a) {
-	delimiter = [];
+	var delimiter = [];
 	for (let i = 0, l = a.length; i < l; i++) {
 		delimiter.push(a.charCodeAt(i));
 	}
@@ -32,7 +32,7 @@ function _getReFormat(delimiter) {
 		return new RegExp("[\"" + delimiter.map(String.fromCharCode).join("") + "\n\r]");
 	}
 export default function csv(/*delimiters,options*/) {
-	var options = _options,
+	var options = object(_options).clone(),
 		delimiter = _delimiter,
 		indexAfterHeader=0,
 		regexpFormat= _getReFormat(delimiter);
@@ -41,17 +41,51 @@ export default function csv(/*delimiters,options*/) {
 			delimiter=_setDelimiter(arguments[0]);
 			regexpFormat = _getReFormat(delimiter);
 		} else {
-			options=_setOptions(arguments[0]);
+			options=_setOptions(options,arguments[0]);
 		}
 	} else if (arguments.length > 1) {
 		delimiter=_setDelimiter(arguments[0]);
 		regexpFormat = _getReFormat(delimiter);
-		options=_setOptions(arguments[1]);
+		options=_setOptions(options,arguments[1]);
+	}
+	function _isNumeric(n) {
+		//todo move to main
+	  return !isNaN(parseFloat(n)) && isFinite(n);
 	}
 	function _getHeader(text) {
-		var res;
+		var res,origName,suffix,splitValue,currentValue;
 		indexAfterHeader = 0; //reset index
 		while ((res = csvParser(text, undefined, options, delimiter, indexAfterHeader, 0)), indexAfterHeader = res.endIndex, (res.result.length !== 1 && res.validCSV));
+		//remove null or empty values
+		res.result[0]=array(res.result[0]).replaceNull(function(v,i){return options.headerPrefix+i});
+		//make really unique values
+		for (let i=0,len=res.result[0].length;i<len;i++){
+			//array without current Element
+			currentValue=res.result[0][i];
+			while(res.result[0].indexOf(currentValue)<i&&res.result[0].indexOf(currentValue)>-1){
+				//found value before that equals this
+				splitValue=currentValue.split("_");
+				if(splitValue.length===1){
+					origName=splitValue[0];
+					suffix=-1;
+				}
+				else{
+					suffix=splitValue.pop();
+					if(_isNumeric(suffix)&&Number(suffix)%1===0){
+						suffix=Number(suffix);
+						origName=splitValue.join("_");
+					}
+					else{
+						origName=splitValue.concat(suffix).join("_");
+						suffix=-1;
+						
+					}
+					
+				}
+				currentValue=origName+"_"+(++suffix);
+			}
+			res.result[0][i]=currentValue;
+		}
 		return res;
 	}
 	function formatResult(parsedCSV, headers) {
@@ -93,6 +127,7 @@ export default function csv(/*delimiters,options*/) {
 		columns = Array.isArray(columns) ? columns : [];
 		prefix = prefix || "field_";
 		//make sure prefix is unique with respect to existing columns;
+		console.log(columns);
 		prefix = columns.reduce(function (res, v) {
 				while (v.substr(0, res.length) === res) {
 					res = res + "_";
