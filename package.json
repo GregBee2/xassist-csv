@@ -15,10 +15,11 @@
   "scripts": {
     "pretest": "rimraf dist  && rollup -c",
     "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js && eslint index.js src",
+	"posttest":"npm run uglify",
     "build": "npm run test && git commit -am ",
-    "prepublishOnly": "npm version patch && npm run build  -- \"publish version latest version\"",
+    "prepublishOnly": "npm version patch && npm run build  -- \"publish latest version\"",
     "postpublish": "git push && git push --tags",
-	"uglify":"uglifyjs  --comment  dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
+	"uglify":"uglifyjs  --comments /^@preserve/ dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
   },
   "files": [
     "dist",

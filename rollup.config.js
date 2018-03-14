@@ -4,8 +4,8 @@ var endOfLine = require('os').EOL;
 var bannerText="/**"+endOfLine+
 	"* @preserve" +endOfLine+
 	"* "+(definition.homepage||definition.name)+" Version "+definition.version+"."+endOfLine+
-	"* "+"// Copyright "+(new Date).getFullYear()+" "+definition.author.name+"."+endOfLine+
-	"* "+"// Created on "+(new Date).toUTCString()+"."+endOfLine+
+	"*  Copyright "+(new Date).getFullYear()+" "+definition.author.name+"."+endOfLine+
+	"*  Created on "+(new Date).toUTCString()+"."+endOfLine+
 	"*/";
 //var ignoreUMD=endOfLine+endOfLine+"/*istanbul ignore next*/"; //ignore umd definition
 var _format="umd";
