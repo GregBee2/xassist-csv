@@ -17,7 +17,8 @@
     "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js && eslint index.js src",
     "build": "npm run test && git commit -am ",
     "prepublishOnly": "npm version patch && npm run build  -- \"publish version latest version\"",
-    "postpublish": "git push && git push --tags"
+    "postpublish": "git push && git push --tags",
+	"uglify":"uglifyjs  dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
   },
   "files": [
     "dist",
