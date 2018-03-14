@@ -1,6 +1,6 @@
 {
   "name": "@xassist/xassist-csv",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "load csv files from remote and create csv files",
   "keywords": [
     "xAssist",
