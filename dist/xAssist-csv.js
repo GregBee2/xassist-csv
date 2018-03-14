@@ -1,6 +1,6 @@
 // https://github.com/GregBee2/xassist-csv#readme Version 1.0.1.
 // Copyright 2018 undefined.
-// Created on Wed, 14 Mar 2018 09:23:50 GMT.
+// Created on Wed, 14 Mar 2018 09:38:39 GMT.
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@xassist/xassist-object'), require('@xassist/xassist-array')) :
 	typeof define === 'function' && define.amd ? define(['exports', '@xassist/xassist-object', '@xassist/xassist-array'], factory) :
@@ -168,7 +168,8 @@ function csv(/*delimiters,options*/) {
 		}
 		headers = headers || h;
 		return formatResult(csvParser(text, callBack, options, delimiter, indexAfterHeader), headers);
-	}	function toObject(text, callBack, headers) {
+	}
+	function toObject(text, callBack, headers) {
 		//returns object for each row, with header row if specified in options
 		//with optional callback on each object row
 		var converter,
@@ -192,7 +193,8 @@ function csv(/*delimiters,options*/) {
 			return callBack(converter(row), i);
 		}: converter);
 		return formatResult(csvParser(text, f, options, delimiter, indexAfterHeader), headers);
-	}	function fromObject(rows, headers) {
+	}
+	function fromObject(rows, headers) {
 		var d = String.fromCharCode(delimiter[0]),
 		rowConv,
 		mapF;
@@ -208,7 +210,8 @@ function csv(/*delimiters,options*/) {
 			}).join(d)]
 		.concat(rows.map(mapF))
 		.join("\n");
-	}	function fromArray(rows, headers) {
+	}
+	function fromArray(rows, headers) {
 		var d = String.fromCharCode(delimiter[0]),
 		mapF = function (row) {
 			return rowArrayToText(row, d);
@@ -217,7 +220,8 @@ function csv(/*delimiters,options*/) {
 		return [mapF(headers)]
 		.concat(rows.map(mapF))
 		.join("\n");
-	}	
+	}
+	
 	return {
 		toArray:toArray,
 		toObject:toObject,

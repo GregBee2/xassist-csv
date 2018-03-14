@@ -436,7 +436,11 @@
 391
 392
 393
-394</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+394
+395
+396
+397
+398</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -606,6 +610,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32×</span>
 <span class="cline-any cline-yes">32×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -630,29 +635,32 @@
 <span class="cline-any cline-yes">9×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">33×</span>
-<span class="cline-any cline-yes">1×</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -831,7 +839,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// https://github.com/GregBee2/xassist-csv#readme Version 1.0.1.
 // Copyright 2018 undefined.
-// Created on Wed, 14 Mar 2018 09:23:50 GMT.
+// Created on Wed, 14 Mar 2018 09:38:39 GMT.
 (function (global, factory) {
 	typeof exports === 'object' &amp;&amp; typeof module !== 'undefined' ? factory(exports, require('@xassist/xassist-object'), require('@xassist/xassist-array')) :
 <span class="branch-1 cbranch-no" title="branch not covered" >	typeof define === 'function' &amp;&amp; define.amd ? define(['exports', '@xassist/xassist-object', '@xassist/xassist-array'], factory) :</span>
@@ -999,7 +1007,8 @@ function csv(/*delimiters,options*/) {
 		}
 		headers = headers || h;
 		return formatResult(csvParser(text, callBack, options, delimiter, indexAfterHeader), headers);
-	}	function toObject(text, callBack, headers) {
+	}
+	function toObject(text, callBack, headers) {
 		//returns object for each row, with header row if specified in options
 		//with optional callback on each object row
 		var converter,
@@ -1023,7 +1032,8 @@ function csv(/*delimiters,options*/) {
 			return callBack(converter(row), i);
 		}: converter);
 		return formatResult(csvParser(text, f, options, delimiter, indexAfterHeader), headers);
-	}	<span class="fstat-no" title="function not covered" >function fromObject(rows, headers) {</span>
+	}
+<span class="fstat-no" title="function not covered" >	function fromObject(rows, headers) {</span>
 <span class="cstat-no" title="statement not covered" >		var d = String.fromCharCode(delimiter[0]),</span>
 		rowConv,
 		mapF;
@@ -1039,7 +1049,8 @@ function csv(/*delimiters,options*/) {
 			}).join(d)]
 		.concat(rows.map(mapF))
 		.join("\n");
-	}	<span class="fstat-no" title="function not covered" >function fromArray(rows, headers) {</span>
+	}
+<span class="fstat-no" title="function not covered" >	function fromArray(rows, headers) {</span>
 <span class="cstat-no" title="statement not covered" >		var d = String.fromCharCode(delimiter[0]),</span>
 		mapF = <span class="fstat-no" title="function not covered" >function (row) {</span>
 <span class="cstat-no" title="statement not covered" >			return rowArrayToText(row, d);</span>
@@ -1048,7 +1059,8 @@ function csv(/*delimiters,options*/) {
 <span class="cstat-no" title="statement not covered" >		return [mapF(headers)]</span>
 		.concat(rows.map(mapF))
 		.join("\n");
-	}	
+	}
+	
 	return {
 		toArray:toArray,
 		toObject:toObject,
@@ -1228,7 +1240,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 14 2018 10:23:51 GMT+0100 (Romance Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 14 2018 10:38:40 GMT+0100 (Romance Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

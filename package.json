@@ -14,7 +14,7 @@
   "main": "dist/xAssist-csv.js",
   "scripts": {
     "pretest": "rimraf dist  && rollup -c",
-    "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js",
+    "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js && eslint index.js src",
     "build": "npm run test && git commit -am ",
     "prepublishOnly": "npm version patch && npm run build  -- \"publish version latest version\"",
     "postpublish": "git push && git push --tags"

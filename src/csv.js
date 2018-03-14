@@ -162,7 +162,7 @@ export default function csv(/*delimiters,options*/) {
 		}
 		headers = headers || h;
 		return formatResult(csvParser(text, callBack, options, delimiter, indexAfterHeader), headers);
-	};
+	}
 	function toObject(text, callBack, headers) {
 		//returns object for each row, with header row if specified in options
 		//with optional callback on each object row
@@ -187,7 +187,7 @@ export default function csv(/*delimiters,options*/) {
 			return callBack(converter(row), i);
 		}: converter);
 		return formatResult(csvParser(text, f, options, delimiter, indexAfterHeader), headers);
-	};
+	}
 	function fromObject(rows, headers) {
 		var d = String.fromCharCode(delimiter[0]),
 		rowConv,
@@ -204,7 +204,7 @@ export default function csv(/*delimiters,options*/) {
 			}).join(d)]
 		.concat(rows.map(mapF))
 		.join("\n");
-	};
+	}
 	function fromArray(rows, headers) {
 		var d = String.fromCharCode(delimiter[0]),
 		mapF = function (row) {
@@ -214,7 +214,7 @@ export default function csv(/*delimiters,options*/) {
 		return [mapF(headers)]
 		.concat(rows.map(mapF))
 		.join("\n");
-	};
+	}
 	
 	return {
 		toArray:toArray,
