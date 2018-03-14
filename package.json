@@ -1,15 +1,15 @@
 {
   "name": "@xassist/xassist-csv",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "load csv files from remote and create csv files",
   "keywords": [
     "xAssist",
     "csv",
-	"fromArray",
-	"tsv",
-	"fromObject",
-	"toObject",
-	"toArray"
+    "fromArray",
+    "tsv",
+    "fromObject",
+    "toObject",
+    "toArray"
   ],
   "bugs": {
     "email": "gregory.beirens@gmail.com"
