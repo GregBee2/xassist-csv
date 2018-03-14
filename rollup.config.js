@@ -1,15 +1,18 @@
 const definition = require("./package.json");
 const dependencies = Object.keys(definition.dependencies || {});
 var endOfLine = require('os').EOL;
-var bannerText="// "+(definition.homepage||definition.name)+" Version "+definition.version+"."+
-	endOfLine+"// Copyright "+(new Date).getFullYear()+" "+definition.author.name+"."+
-	endOfLine+"// Created on "+(new Date).toUTCString()+".";
+var bannerText="/**"+endOfLine+
+	"* @preserve" +endOfLine+
+	"* "+(definition.homepage||definition.name)+" Version "+definition.version+"."+endOfLine+
+	"* "+"// Copyright "+(new Date).getFullYear()+" "+definition.author.name+"."+endOfLine+
+	"* "+"// Created on "+(new Date).toUTCString()+"."+endOfLine+
+	"*/";
 //var ignoreUMD=endOfLine+endOfLine+"/*istanbul ignore next*/"; //ignore umd definition
 var _format="umd";
 
 var args=process.argv
 var formatArgs=["-f","--output.format"];
-console.log(args)
+
 for (let i=0,len=args.length;i<len;i++){
 	for(let j=0,len2=formatArgs.length;j<len2;j++){
 		if(args[i]===formatArgs[j]){
@@ -21,7 +24,6 @@ for (let i=0,len=args.length;i<len;i++){
 		}
 	}
 }
-console.log(dependencies.reduce((p, v) => (p[v] = "xa", p), {}));
 
 export default {
 	input: './index.js',

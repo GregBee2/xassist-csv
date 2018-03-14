@@ -18,7 +18,7 @@
     "build": "npm run test && git commit -am ",
     "prepublishOnly": "npm version patch && npm run build  -- \"publish version latest version\"",
     "postpublish": "git push && git push --tags",
-	"uglify":"uglifyjs  dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
+	"uglify":"uglifyjs  --comment  dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
   },
   "files": [
     "dist",
