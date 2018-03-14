@@ -4,7 +4,12 @@
   "description": "load csv files from remote and create csv files",
   "keywords": [
     "xAssist",
-    "csv"
+    "csv",
+	"fromArray",
+	"tsv",
+	"fromObject",
+	"toObject",
+	"toArray"
   ],
   "bugs": {
     "email": "gregory.beirens@gmail.com"
