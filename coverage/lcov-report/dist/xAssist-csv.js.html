@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.04% </span>
+        <span class="strong">84.11% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>179/213</span>
+        <span class='fraction'>180/214</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">82.39% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>25/37</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.36% </span>
+        <span class="strong">84.43% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>178/211</span>
+        <span class='fraction'>179/212</span>
       </div>
     </div>
   </div>
@@ -435,7 +435,9 @@
 390
 391
 392
-393</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+393
+394
+395</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
@@ -685,6 +687,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">4×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -789,7 +793,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">82×</span>
 <span class="cline-any cline-yes">266×</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">266×</span>
 <span class="cline-any cline-yes">266×</span>
 <span class="cline-any cline-yes">718×</span>
 <span class="cline-any cline-yes">708×</span>
@@ -829,7 +833,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// https://github.com/GregBee2/xassist-csv#readme Version 1.0.1.
 // Copyright 2018 undefined.
-// Created on Wed, 14 Mar 2018 08:45:31 GMT.
+// Created on Wed, 14 Mar 2018 09:04:11 GMT.
 (function (global, factory) {
 	typeof exports === 'object' &amp;&amp; typeof module !== 'undefined' ? factory(exports, require('@xassist/xassist-object'), require('@xassist/xassist-array')) :
 <span class="branch-1 cbranch-no" title="branch not covered" >	typeof define === 'function' &amp;&amp; define.amd ? define(['exports', '@xassist/xassist-object', '@xassist/xassist-array'], factory) :</span>
@@ -857,7 +861,7 @@ function _setOptions(o,newVals) {
 }
 function _setDelimiter(a) {
 	var delimiter = [];
-	for (let i = 0, l = a.length; i &lt; l; i++) {
+	for (var i = 0, l = a.length; i &lt; l; i++) {
 		delimiter.push(a.charCodeAt(i));
 	}
 	return delimiter;
@@ -895,7 +899,7 @@ function csv(/*delimiters,options*/) {
 			//remove null or empty values
 			res.result[0]=xassistArray.array(res.result[0]).replaceNull(function(v,i){return options.headerPrefix+i});
 			//make really unique values
-			for (let i=0,len=res.result[0].length;i&lt;len;i++){
+			for (var i=0,len=res.result[0].length;i&lt;len;i++){
 				//array without current Element
 				currentValue=res.result[0][i];
 				while(res.result[0].indexOf(currentValue)&lt;i&amp;&amp;res.result[0].indexOf(currentValue)&gt;-1){
@@ -972,7 +976,7 @@ function csv(/*delimiters,options*/) {
 			}, prefix);
 		return function (row) {
 			return row.reduce(function (result, value, index) {
-				let key = columns[index] || (prefix + index);
+				var key = columns[index] || (prefix + index);
 				result[key] = value;
 				return result;
 			}, {});
@@ -1068,6 +1072,8 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 	endLine = (typeof endLine === "undefined" ? Infinity : Number(endLine));
 	function parseRows(text) {
 		var records = [], // output rows,
+		record=[],
+		recordF=[],
 		valid = true,
 		error = {},
 		len = text.length,
@@ -1160,7 +1166,7 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 					return (b - a) === 1;
 				});
 			var rowsToRemove = [];
-			for (let i = 0, l = emptyRecordsGrouped.length; i &lt; l; i++) {
+			for (var i = 0, l = emptyRecordsGrouped.length; i &lt; l; i++) {
 				if ((options.removeLeadingEmptyRows &amp;&amp; (emptyRecordsGrouped[i][0] === 0)) ||
 					((options.removeInnerEmptyRows &amp;&amp; (emptyRecordsGrouped[i][0] !== 0) &amp;&amp;
 							(emptyRecordsGrouped[i][emptyRecordsGrouped[i].length - 1] !== lastRow))) ||
@@ -1180,7 +1186,7 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 			};
 		}
 		while (line &lt;= endLine &amp;&amp; (value = getNextValue()) !== EOF &amp;&amp; valid) {
-			let record = [],
+			record = [];
 			recordF = [];
 			while (value !== EOL &amp;&amp; value !== EOF &amp;&amp; value !== ERROR) {
 				if (options.trimValues) {
@@ -1225,7 +1231,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 14 2018 09:45:31 GMT+0100 (Romance Standard Time)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Mar 14 2018 10:04:12 GMT+0100 (Romance Standard Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

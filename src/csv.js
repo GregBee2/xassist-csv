@@ -22,7 +22,7 @@ function _setOptions(o,newVals) {
 }
 function _setDelimiter(a) {
 	var delimiter = [];
-	for (let i = 0, l = a.length; i < l; i++) {
+	for (var i = 0, l = a.length; i < l; i++) {
 		delimiter.push(a.charCodeAt(i));
 	}
 	return delimiter;
@@ -60,7 +60,7 @@ export default function csv(/*delimiters,options*/) {
 			//remove null or empty values
 			res.result[0]=array(res.result[0]).replaceNull(function(v,i){return options.headerPrefix+i});
 			//make really unique values
-			for (let i=0,len=res.result[0].length;i<len;i++){
+			for (var i=0,len=res.result[0].length;i<len;i++){
 				//array without current Element
 				currentValue=res.result[0][i];
 				while(res.result[0].indexOf(currentValue)<i&&res.result[0].indexOf(currentValue)>-1){
@@ -137,7 +137,7 @@ export default function csv(/*delimiters,options*/) {
 			}, prefix);
 		return function (row) {
 			return row.reduce(function (result, value, index) {
-				let key = columns[index] || (prefix + index);
+				var key = columns[index] || (prefix + index);
 				result[key] = value;
 				return result;
 			}, {});
@@ -237,6 +237,8 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 	endLine = (typeof endLine === "undefined" ? Infinity : Number(endLine));
 	function parseRows(text) {
 		var records = [], // output rows,
+		record=[],
+		recordF=[],
 		valid = true,
 		error = {},
 		len = text.length,
@@ -330,7 +332,7 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 					return (b - a) === 1;
 				});
 			var rowsToRemove = [];
-			for (let i = 0, l = emptyRecordsGrouped.length; i < l; i++) {
+			for (var i = 0, l = emptyRecordsGrouped.length; i < l; i++) {
 				if ((options.removeLeadingEmptyRows && (emptyRecordsGrouped[i][0] === 0)) ||
 					((options.removeInnerEmptyRows && (emptyRecordsGrouped[i][0] !== 0) &&
 							(emptyRecordsGrouped[i][emptyRecordsGrouped[i].length - 1] !== lastRow))) ||
@@ -350,7 +352,7 @@ function csvParser(text, callBack, options, delimiter, startIndex, endLine) {
 			};
 		}
 		while (line <= endLine && (value = getNextValue()) !== EOF && valid) {
-			let record = [],
+			record = [];
 			recordF = [];
 			while (value !== EOL && value !== EOF && value !== ERROR) {
 				if (options.trimValues) {
