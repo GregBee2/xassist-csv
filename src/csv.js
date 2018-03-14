@@ -49,7 +49,7 @@ export default function csv(/*delimiters,options*/) {
 	}
 	function _isNumeric(n) {
 		//todo move to main
-	  return !isNaN(parseFloat(n)) && isFinite(n);
+		return !isNaN(parseFloat(n)) && isFinite(n);
 	}
 	function _getHeader(text) {
 		var res,origName,suffix,splitValue,currentValue;
@@ -185,8 +185,7 @@ export default function csv(/*delimiters,options*/) {
 		converter = arrayToObject(headers, options.headerPrefix);
 		f = (callBack ? function (row, i) {
 			return callBack(converter(row), i);
-		}
-			 : converter);
+		}: converter);
 		return formatResult(csvParser(text, f, options, delimiter, indexAfterHeader), headers);
 	};
 	function fromObject(rows, headers) {
