@@ -27,10 +27,6 @@
     "postpublish": "git push && git push --tags",
     "uglify": "uglifyjs  --comments /^@preserve/ dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
   },
-  "files": [
-    "dist",
-    "src"
-  ],
   "devDependencies": {
     "rimraf": "^2.6.2",
     "rollup": "^0.56.3",
