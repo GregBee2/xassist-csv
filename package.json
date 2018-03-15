@@ -17,6 +17,7 @@
   "license": "GPL-3.0",
   "author": "Gregory Beirens <gregory.beirens@gmail.com>",
   "main": "dist/xAssist-csv.js",
+  "module":"index",
   "scripts": {
     "pretest": "rimraf dist  && rollup -c",
     "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js && eslint index.js src",
