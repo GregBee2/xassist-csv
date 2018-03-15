@@ -1,6 +1,6 @@
 {
   "name": "@xassist/xassist-csv",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "load csv files from remote and create csv files",
   "keywords": [
     "xAssist",
@@ -17,7 +17,7 @@
   "license": "GPL-3.0",
   "author": "Gregory Beirens <gregory.beirens@gmail.com>",
   "main": "dist/xAssist-csv.js",
-  "module":"index",
+  "module": "index",
   "scripts": {
     "pretest": "rimraf dist  && rollup -c",
     "test": "istanbul cover node_modules/tape/bin/tape test/**/*-test.js && eslint index.js src",
