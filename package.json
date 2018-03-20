@@ -25,9 +25,11 @@
     "build": "npm run test && git commit -am ",
     "prepublishOnly": "npm version patch && npm run build  -- \"publish latest version\"",
     "postpublish": "git push && git push --tags",
+	"readme":"node csv2readme.config.js",
     "uglify": "uglifyjs  --comments /^@preserve/ dist/xAssist-csv.js -c -m -o dist/xAssist-csv.min.js"
   },
   "devDependencies": {
+    "csv2readme": "^1.0.1",
     "rimraf": "^2.6.2",
     "rollup": "^0.56.3",
     "tape": "^4.9.0"
