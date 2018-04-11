@@ -9,7 +9,7 @@ The module uses [UMD](https://github.com/umdjs/umd) and supports [AMD](https://g
 
 ```html
 <script>
-xa.object()
+xa.csv()
 </script>
 ```
 
@@ -217,7 +217,7 @@ This method will build a vild csv-textString based on the rows in Object-format
 - **rows** [`Array`]:an array of Objects, representing the values inside each row.
 - *headers* [`Array`,defaults to: `[]`]:An array with all headers of each column
 #### Result for csv().fromObject()
-`csv().fromArray()` returns a String, which can be saved as valid csv-tekst.
+`csv().fromObject()` returns a String, which can be saved as valid csv-tekst.
 #### Example for csv().fromObject()
 Suppose following initialization:
 ```js

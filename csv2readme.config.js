@@ -27,7 +27,7 @@ var options={
 		moduleUrl:"https://raw.githubusercontent.com/GregBee2/xassist-csv/master/dist/xAssist-csv.min.js",
 		libraryName:"xassist",
 		libraryUrl:"https://github.com/GregBee2/xassist",
-		moduleTest:"object()"
+		moduleTest:"csv()"
 	},
 	footerTemplates:{
 		/*license:definition.license,
