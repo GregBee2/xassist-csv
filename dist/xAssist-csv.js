@@ -1,8 +1,8 @@
 /**
 * @preserve
-* https://github.com/GregBee2/xassist-csv#readme Version 1.0.7.
+* https://github.com/GregBee2/xassist-csv#readme Version 1.0.8.
 *  Copyright 2018 undefined.
-*  Created on Thu, 15 Mar 2018 13:13:04 GMT.
+*  Created on Tue, 17 Apr 2018 10:40:57 GMT.
 */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@xassist/xassist-object'), require('@xassist/xassist-array')) :
